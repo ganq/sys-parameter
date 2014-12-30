@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mysoft.b2b.bizsupport.mapper.IdGenerationMapper">	
+	<select id="getIdGenerationByName" parameterType="String" resultType="com.mysoft.b2b.bizsupport.api.IdGeneration">
+		SELECT table_name as tableName, table_id as tableId
+		FROM b2b_parameter.bsp_id_generation
+		WHERE table_name = #{tableName, jdbcType=VARCHAR} for update
+	</select>
+	
+	<!-- 新增基础分类对象 -->
+	<insert id="saveIdGeneration" parameterType="com.mysoft.b2b.bizsupport.api.IdGeneration" keyProperty="tableName">
+		insert into
+		b2b_parameter.bsp_id_generation
+		(table_name,
+		table_id
+		) values
+		(#{tableName},
+		#{tableId})
+	</insert>
+	
+	<!-- 修改基础分类对象  
+			category_shortname = #{basicCategory.categoryShortname},-->
+	<update id="updateIdGeneration" parameterType="com.mysoft.b2b.bizsupport.api.IdGeneration">
+		UPDATE b2b_parameter.bsp_id_generation SET
+			table_id = #{tableId}
+			WHERE table_name = #{tableName, jdbcType=VARCHAR}
+	</update>
+	
+
+</mapper>

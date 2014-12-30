@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mysoft.b2b.basicsystem.settings.mapper.RegionMapper">
+
+	<insert id="insertRegion" parameterType="java.util.List" keyProperty="tableName">
+		INSERT INTO `b2b_parameter`.`bizp_area` (
+			`item_code`,
+			`item_status`,
+			`big_area`,
+			`parent_item_code`,
+			`display_order`,
+			`item_name`
+		)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">  
+    (
+    	#{item.code},
+			'1',
+			#{item.area},
+			#{item.parentCode},
+			#{item.displayOrder},
+			#{item.name}
+    )  
+    </foreach>
+	</insert>
+	
+	<delete id="deleteAllRegion" parameterType="string">
+		DELETE
+		FROM
+			`b2b_parameter`.`bizp_area`
+	</delete>
+
+</mapper>

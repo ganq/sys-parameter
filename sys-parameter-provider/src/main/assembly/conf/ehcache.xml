@@ -1,0 +1,95 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
+
+	<diskStore path="java.io.tmpdir" />
+
+	<defaultCache maxEntriesLocalHeap="0" eternal="false"
+		timeToIdleSeconds="1200" timeToLiveSeconds="1200">
+	</defaultCache>
+	
+    <!--调用ehcache2的RMI -->
+	<cacheManagerPeerProviderFactory
+		class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+		properties="peerDiscovery=manual,rmiUrls=//${cache.provider1}/dictionry
+		|//${cache.provider1}/region|//${cache.provider1}/providerType
+		|//${cache.provider1}/supplierTagType
+		|//${cache.provider1}/companyProperty|//${cache.provider1}/systemParameter
+		|//${cache.provider2}/dictionry|//${cache.provider2}/region
+		|//${cache.provider2}/providerType|//${cache.provider2}/companyProperty
+		|//${cache.provider2}/supplierTagType
+		|//${cache.provider2}/systemParameter
+		|//${cache.provider2}/currencyType|//${cache.provider1}/currencyType
+		|//${cache.provider2}/developQualificationType|//${cache.provider1}/developQualificationType
+		|//${cache.provider2}/developerBusinessAreaType|//${cache.provider1}/developerBusinessAreaType"
+		/>
+
+
+	<!--RMI监听40001端口 -->
+	<cacheManagerPeerListenerFactory
+		class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
+		properties="hostName=${cache.Listener},port=${cache.Listener.Port},socketTimeoutMillis=2000" />
+		
+	<cache name="dictionry" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+	</cache>
+
+	<cache name="region" maxEntriesLocalHeap="10000" overflowToDisk="true"
+		eternal="false" diskSpoolBufferSizeMB="20" timeToIdleSeconds="0"
+		timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+	</cache>
+
+	<cache name="providerType" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+	</cache>
+
+    <cache name="supplierTagType" maxEntriesLocalHeap="10000"
+           overflowToDisk="true" eternal="true" diskSpoolBufferSizeMB="20"
+           timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+    </cache>
+
+	<cache name="companyProperty" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+	</cache>
+
+	<cache name="systemParameter" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+	</cache>
+
+	<cache name="currencyType" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+	</cache>
+	
+	<cache name="developQualificationType" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+	</cache>
+	
+	<cache name="developerBusinessAreaType" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+	</cache>
+	
+</ehcache>

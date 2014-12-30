@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mysoft.b2b.basicsystem.settings.mapper.VerifyCodeMapper">
+
+	<insert id="insertVerifyCode" parameterType="com.mysoft.b2b.basicsystem.settings.api.VerifyCode" keyProperty="tableName">
+		insert into
+		b2b_parameter.sysp_verify_code
+		(
+			verify_code_id, code, token, error_times, status, created_time, last_validated_time
+		) values
+		(
+			#{verifyCodeId, jdbcType=VARCHAR}, #{code, jdbcType=VARCHAR}, #{token, jdbcType=VARCHAR}, 
+			#{errorTimes, jdbcType=INTEGER}, #{status, jdbcType=TINYINT}, #{createdTime, jdbcType=TIMESTAMP}, #{lastValidatedTime, jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<update id="updateVerifyCode" parameterType="com.mysoft.b2b.basicsystem.settings.api.VerifyCode">
+		UPDATE b2b_parameter.sysp_verify_code SET
+			code = #{code, jdbcType=VARCHAR}
+			<if test="errorTimes != 0">
+				,error_times=#{errorTimes, jdbcType=INTEGER}
+			</if>
+			<if test="status != 0">
+				,status=#{status, jdbcType=TINYINT}
+			</if>
+			<if test="lastValidatedTime != null ">
+				,last_validated_time=#{lastValidatedTime, jdbcType=TIMESTAMP}
+			</if>
+		WHERE verify_code_id = #{verifyCodeId}
+	</update>
+	
+	<delete id="deleteVerifyCode" parameterType="string">
+		DELETE
+		FROM
+			b2b_parameter.sysp_verify_code
+		WHERE verify_code_id = #{verifyCodeId}
+	</delete>
+	
+	<select id="getVerifyCode" parameterType="String" resultType="com.mysoft.b2b.basicsystem.settings.api.VerifyCode">
+		SELECT 
+			verify_code_id as verifyCodeId, code, token, error_times as errorTimes, status, 
+			created_time as createdTimes, last_validated_time as lastValidatedTime
+		FROM b2b_parameter.sysp_verify_code
+		WHERE 1=1
+		<if test="verifyCodeId != null and verifyCodeId != '' ">
+			and verify_code_id=#{verify_code_id, jdbcType=VARCHAR}
+		</if>
+		<if test="token != null and token != '' ">
+			and token=#{token, jdbcType=VARCHAR}
+		</if>
+	</select>
+
+</mapper>

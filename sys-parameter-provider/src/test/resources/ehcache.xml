@@ -1,0 +1,55 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
+
+	<diskStore path="java.io.tmpdir" />
+
+	<defaultCache maxEntriesLocalHeap="0" eternal="false"
+		timeToIdleSeconds="1200" timeToLiveSeconds="1200">
+	</defaultCache>
+
+	<cache name="dictionry" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+	<cache name="region" maxEntriesLocalHeap="10000" overflowToDisk="true"
+		eternal="false" diskSpoolBufferSizeMB="20" timeToIdleSeconds="0"
+		timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+	<cache name="providerType" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+    <cache name="supplierTagType" maxEntriesLocalHeap="10000"
+           overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+           timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+    </cache>
+
+	<cache name="companyProperty" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+	<cache name="systemParameter" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+	</cache>
+	
+	<cache name="currencyType" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+	</cache>
+	
+	<cache name="developQualificationType" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+	</cache>
+	
+	<cache name="developerBusinessAreaType" maxEntriesLocalHeap="10000"
+		overflowToDisk="true" eternal="false" diskSpoolBufferSizeMB="20"
+		timeToIdleSeconds="0" timeToLiveSeconds="0" memoryStoreEvictionPolicy="LFU">
+	</cache>
+
+</ehcache>
